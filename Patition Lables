@@ -1,0 +1,14 @@
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        rev = [s[i] for i in range(len(s)-1,-1,-1)]
+        print(rev)
+        end = 0
+        size = 0
+        ans = []
+        for i in range(len(s)):
+            size += 1
+            end = max(end,len(s)-rev.index(s[i]))
+            if end == i+1:
+                ans.append(size)
+                size = 0
+        return ans
