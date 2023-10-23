@@ -1,0 +1,22 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        if len(p) > len(s):
+            return []
+        pMap = {}
+        sMap = {}
+        for i in range(len(p)-1,-1,-1):
+            pMap[p[i]] = 1 + pMap.get(p[i],0)
+            sMap[s[i]] = 1 + sMap.get(s[i],0)
+        ans = [0] if pMap == sMap else []
+        for i in range(len(p),len(s)):
+            sMap[s[i]] = 1 + sMap.get(s[i],0)
+            sMap[s[i-len(p)]] -= 1
+            if sMap[s[i-len(p)]] == 0:
+                sMap.pop(s[i-len(p)])
+            if sMap == pMap:
+                ans.append(i-len(p)+1)
+        return ans
+                
+
+        
+        
