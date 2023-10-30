@@ -1,0 +1,13 @@
+def arrayManipulation(n, queries):
+    p = [0] * n
+    for i in queries:
+        p[i[0]-1] += i[2]
+        if i[1] < n:
+            p[i[1]] -= i[2]
+    summ = 0
+    maxx = p[0]
+    for i in range(len(p)):
+        summ += p[i]
+        if summ > maxx:
+            maxx = summ
+    return maxx
