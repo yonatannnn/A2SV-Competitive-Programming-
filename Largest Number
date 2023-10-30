@@ -1,0 +1,16 @@
+class Solution:
+    def largestNumber(self, nums: List[int]) -> str:
+        listNum = []
+        for element in nums:
+            listNum += [str(element)]        
+        n = len(listNum)
+        for i in range(n):
+            for j in range(i+1 , n):                
+                if str(listNum[i]) + str(listNum[j]) > str(listNum[j]) + str(listNum[i]):
+                    continue
+                else:
+                    listNum[i] , listNum[j] = listNum[j] , listNum[i]
+        ans = ''.join(listNum)
+        if int(ans) == 0:
+            return "0"        
+        return ans
